@@ -55,8 +55,9 @@ class LoginForm extends Component {
       window.location = "/";
     } catch (ex) {
       const errors = { ...this.state.errors };
-      errors.email = ex.response.data;
-      this.setState({ errors });
+      console.log(ex.response);
+      // errors.email = ex.response.data;
+      // this.setState({ errors });
     }
   };
 
