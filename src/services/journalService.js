@@ -1,7 +1,7 @@
 import http from "./httpService";
 const config = require("../config.json");
 
-const apiEndpoint = `${config.apiUrl}/journals`;
+const apiEndpoint = `/journals`;
 
 function journalUrl(journalId) {
   return `${apiEndpoint}/${journalId}`;

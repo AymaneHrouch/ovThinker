@@ -1,7 +1,7 @@
 import http from "./httpService";
 const config = require("../config.json");
 
-const apiEndpoint = `${config.apiUrl}/auth`;
+const apiEndpoint = `/auth`;
 
 export function login(email, password) {
   return http.post(apiEndpoint, { email, password });
