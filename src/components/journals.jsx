@@ -17,7 +17,7 @@ class JournalTable extends Component {
   state = {
     journals: [],
     currentPage: 1,
-    pageSize: 10,
+    pageSize: 3,
     pickedFilter: "day",
     pickedDate: new Date(),
     unlockDate: null,
