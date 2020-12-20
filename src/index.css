@@ -1,13 +1,24 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.fa-star,
+.fa-star-o {
+  font-size: 1.5rem;
+  color: red;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.journalCard {
+  white-space: pre-line;
+  overflow-wrap: break-word;
+}
+
+table {
+  table-layout: fixed;
 }
