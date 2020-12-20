@@ -56,8 +56,8 @@ class LoginForm extends Component {
     } catch (ex) {
       const errors = { ...this.state.errors };
       console.log(ex.response);
-      // errors.email = ex.response.data;
-      // this.setState({ errors });
+      errors.email = ex.response.data;
+      this.setState({ errors });
     }
   };
 
