@@ -90,7 +90,7 @@ class LoginForm extends Component {
           />
           <Input
             name="password"
-            label="password"
+            label="Password"
             value={account.password}
             onChange={this.handleChange}
             error={errors.password}

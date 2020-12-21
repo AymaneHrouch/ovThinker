@@ -94,7 +94,7 @@ class Locked extends Component {
               <tr className="d-flex">
                 <th className="col-md-3">Diary</th>
                 <th className="col-md-3">Status</th>
-                <th className="col-md-1"></th>
+                <th className="col-md-0"></th>
               </tr>
             </thead>
 
@@ -123,7 +123,7 @@ class Locked extends Component {
                         `Locked until ${format(new Date(journal.unlockDate))}`
                       )}
                     </td>
-                    <td className="col-md-1">
+                    <td className="col-md-0">
                       <button
                         disabled={new Date() <= new Date(journal.unlockDate)}
                         onClick={event => {
