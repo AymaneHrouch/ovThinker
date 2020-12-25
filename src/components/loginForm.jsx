@@ -96,10 +96,10 @@ class LoginForm extends Component {
             error={errors.password}
           />
           <Button disabled={this.validate()} variant="primary" type="submit">
-            Submit
+            Login
           </Button>
         </Form>
-      </Container>
+      </                                                              Container>
     );
   }
 }
