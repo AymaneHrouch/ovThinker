@@ -1,11 +1,9 @@
-import { set } from "lodash";
 import React, { Component } from "react";
 import {
   getJournal,
   saveJournal,
   deleteJournal,
 } from "../services/journalService";
-import Card from "./card";
 import { toast } from "react-toastify";
 import Box from "./box";
 
@@ -78,18 +76,20 @@ class Journal extends Component {
     const { journal } = this.state;
     if (journal)
       return (
-        <Box
-          onToggleModal={this.handleToggleModal}
-          showModal={this.state.showModal}
-          unlockDate={this.state.unlockDate}
-          onLock={() => this.handleLock(journal._id)}
-          onDateChange={this.handleDateChange}
-          onDelete={() => this.handleDelete(journal._id)}
-          onStar={() => this.handleStar(journal)}
-          journal={journal}
-          onSave={this.handleSave}
-          url={this.props.match.url}
-        />
+        <React.Fragment>
+          <Box
+            onToggleModal={this.handleToggleModal}
+            showModal={this.state.showModal}
+            unlockDate={this.state.unlockDate}
+            onLock={() => this.handleLock(journal._id)}
+            onDateChange={this.handleDateChange}
+            onDelete={() => this.handleDelete(journal._id)}
+            onStar={() => this.handleStar(journal)}
+            journal={journal}
+            onSave={this.handleSave}
+            url={this.props.match.url}
+          />
+        </React.Fragment>
       );
     else {
       this.props.history.replace("/not-found");
