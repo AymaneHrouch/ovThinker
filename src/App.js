@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import jwtDecode from "jwt-decode";
 import Locked from "./components/locked";
 import NavigationBar from "./components/navBar";
 import MyForm from "./components/myForm";
@@ -9,20 +8,18 @@ import NotFound from "./components/not-found";
 import Journal from "./components/journal";
 import Journals from "./components/journals";
 import Random from "./components/random";
-import Logout from './components/logout';
+import Logout from "./components/logout";
 import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/loginForm";
 import "./App.css";
+import auth from "./services/authService";
 
 class App extends Component {
   state = {};
 
   componentDidMount() {
-    try {
-      const jwt = localStorage.getItem("token");
-      const user = jwtDecode(jwt);
-      this.setState({user});
-    } catch(ex) {}
+    const user = auth.getCurrentUser();
+    this.setState({ user });
   }
 
   render() {

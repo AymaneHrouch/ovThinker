@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import Input from "./input";
 import Joi from "joi-browser";
-import { login } from "./../services/authService";
+import auth from "./../services/authService";
 
 class LoginForm extends Component {
   state = {
@@ -50,8 +50,7 @@ class LoginForm extends Component {
   doSubmit = async () => {
     try {
       const { account } = this.state;
-      const { data: jwt } = await login(account.email, account.password);
-      localStorage.setItem("token", jwt);
+      await auth.login(account.email, account.password);
       window.location = "/";
     } catch (ex) {
       const errors = { ...this.state.errors };
