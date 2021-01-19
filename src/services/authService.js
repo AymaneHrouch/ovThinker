@@ -3,6 +3,8 @@ const config = require("../config.json");
 
 const apiEndpoint = `/auth`;
 
+http.setJwt(getJwt());
+
 export function login(email, password) {
   return http.post(apiEndpoint, { email, password });
 }
