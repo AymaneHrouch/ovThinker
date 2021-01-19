@@ -1,5 +1,4 @@
 import http from "./httpService";
-const config = require("../config.json");
 import jwtDecode from "jwt-decode";
 
 const apiEndpoint = `/auth`;

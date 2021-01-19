@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginForm from "./components/loginForm";
 import "./App.css";
 import auth from "./services/authService";
+import ProtectedRoute from "./components/protectedRoute";
 
 class App extends Component {
   state = {};
@@ -37,8 +38,14 @@ class App extends Component {
           <Route path="/journals/:id" component={Journal} />
           <Route path="/journals" component={Journals} />
           <Route path="/random" component={Random} />
-          <Route path="/new" component={MyForm} />
-          <Route path="/login" component={LoginForm} />
+          <ProtectedRoute path="/new" component={MyForm} />
+          <Route
+            path="/login"
+            render={props => {
+              if (auth.getCurrentUser()) return <Redirect to="/new"/>;
+              return <LoginForm />
+            }}
+          />
           <Route path="/logout" component={Logout} />
           {/* <Route path="/register" component={RegisterForm} /> */}
           <Route path="/not-found" component={NotFound} />
