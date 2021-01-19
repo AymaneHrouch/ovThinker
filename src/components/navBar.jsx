@@ -46,7 +46,6 @@ const NavigationBar = ({ user }) => {
               </Nav.Link>
             </React.Fragment>
           )}
-          {/*  */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

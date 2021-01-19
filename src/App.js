@@ -9,11 +9,12 @@ import Journal from "./components/journal";
 import Journals from "./components/journals";
 import Random from "./components/random";
 import Logout from "./components/logout";
-import "react-toastify/dist/ReactToastify.css";
+import RegisterForm from "./components/registerForm";
 import LoginForm from "./components/loginForm";
-import "./App.css";
 import auth from "./services/authService";
 import ProtectedRoute from "./components/protectedRoute";
+import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends Component {
   state = {};
@@ -35,21 +36,27 @@ class App extends Component {
           pauseOnFocusLoss={false}
         />
         <Switch>
-          <Route path="/journals/:id" component={Journal} />
-          <Route path="/journals" component={Journals} />
-          <Route path="/random" component={Random} />
+          <ProtectedRoute path="/journals/:id" component={Journal} />
+          <ProtectedRoute path="/journals" component={Journals} />
+          <ProtectedRoute path="/random" component={Random} />
           <ProtectedRoute path="/new" component={MyForm} />
           <Route
             path="/login"
             render={props => {
-              if (auth.getCurrentUser()) return <Redirect to="/new"/>;
-              return <LoginForm />
+              if (auth.getCurrentUser()) return <Redirect to="/new" />;
+              return <LoginForm />;
             }}
           />
           <Route path="/logout" component={Logout} />
-          {/* <Route path="/register" component={RegisterForm} /> */}
+          <Route
+            path="/register"
+            render={props => {
+              if (auth.getCurrentUser()) return <Redirect to="/new" />;
+              return <RegisterForm />;
+            }}
+          />
           <Route path="/not-found" component={NotFound} />
-          <Route path="/locked" component={Locked} />
+          <ProtectedRoute path="/locked" component={Locked} />
           <Redirect from="/" exact to="/new" />
           <Redirect to="/not-found" />
         </Switch>

@@ -98,7 +98,7 @@ class LoginForm extends Component {
             Login
           </Button>
         </Form>
-      </                                                              Container>
+      </Container>
     );
   }
 }

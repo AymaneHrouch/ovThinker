@@ -28,7 +28,6 @@ class ListRadio extends Component {
         {this.renderInput("day", "Day", true)}
         {this.renderInput("month", "Month")}
         {this.renderInput("starred", "Starred")}
-        {/* {this.renderInput("search", "search")} */}
       </div>
     );
   }
