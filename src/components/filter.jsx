@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
-import Search from "./search";
 
 class Filter extends Component {
   render() {
     const { filter, pickedDate, onChange } = this.props;
 
-    if (filter === "search") {
-      return <Search />;
-    } else if (filter === "month") {
+    if (filter === "month") {
       return (
         <React.Fragment>
           <span

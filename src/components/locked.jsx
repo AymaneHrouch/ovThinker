@@ -145,51 +145,6 @@ class Locked extends Component {
                   forever.”
                 </span>
               )}
-              {/*
-              <tr>
-                <td>2020 - 25 - 02</td>
-                <td>Unlockable</td>
-                <td className="position-absolute">
-                  <button
-                    onClick={this.handleClick}
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                    className="btn btn-primary btn-sm"
-                  >
-                    <i className="fa fa-lock"></i>
-                  </button>
-                </td>
-              </tr>
-             
-              <tr>
-                <td>25-02-2020</td>
-                <td>Locked (until 18 December 2020, 20:55)</td>
-                <td>
-                  <button
-                    disabled
-                    onClick={this.handleClick}
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                    className="btn btn-dark btn-sm"
-                  >
-                    <i className="fa fa-lock"></i>
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td>2020 - 25 - 02</td>
-                <td>Unlockable</td>
-                <td>
-                  <button
-                    onClick={this.handleClick}
-                    onMouseEnter={this.handleMouseEnter}
-                    onMouseLeave={this.handleMouseLeave}
-                    className="btn btn-primary btn-sm"
-                  >
-                    <i className="fa fa-lock"></i>
-                  </button>
-                </td>
-              </tr> */}
             </tbody>
           </Table>
         </Container>

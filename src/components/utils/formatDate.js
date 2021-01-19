@@ -20,4 +20,3 @@ export default function format(date) {
 
   return `${date.getDate()} ${month} ${date.getFullYear()}, ${hours}:${minutes}`;
 }
-
