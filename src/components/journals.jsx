@@ -92,7 +92,6 @@ class JournalTable extends Component {
     }
     if (currentPage < 1) return;
     this.setState({ currentPage });
-    console.log(this.state.currentPage);
   };
 
   handleDelete = async journalId => {
