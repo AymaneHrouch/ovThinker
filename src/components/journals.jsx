@@ -13,7 +13,7 @@ import { deleteJournal } from "./../services/journalService";
 import { toast } from "react-toastify";
 import Box from "./box";
 
-class JournalTable extends Component {
+class Journals extends Component {
   state = {
     journals: [],
     currentPage: 1,
@@ -40,6 +40,8 @@ class JournalTable extends Component {
 
   getRequiredJournals = async () => {
     const { currentPage, pageSize, pickedDate, pickedFilter } = this.state;
+    let start;
+    let end;
     if (pickedFilter === "starred") {
       const { data: journals } = await getStarredJournals(
         currentPage,
@@ -48,13 +50,27 @@ class JournalTable extends Component {
       return this.setState({ journals });
     }
 
-    let day = pickedFilter === "day" ? pickedDate.getDate() : null;
+    if (pickedFilter === "day") {
+      start = new Date(
+        pickedDate.getFullYear(),
+        pickedDate.getMonth(),
+        pickedDate.getDate()
+      );
+      end = new Date(
+        pickedDate.getFullYear(),
+        pickedDate.getMonth(),
+        pickedDate.getDate() + 1
+      );
+    } else {
+      start = new Date(pickedDate.getFullYear(), pickedDate.getMonth());
+      end = new Date(pickedDate.getFullYear(), pickedDate.getMonth() + 1);
+    }
+
     const { data: journals } = await getJournals(
       currentPage,
       pageSize,
-      pickedDate.getFullYear(),
-      pickedDate.getMonth(),
-      day
+      start.getTime(),
+      end.getTime()
     );
     this.setState({ journals });
   };
@@ -150,12 +166,7 @@ class JournalTable extends Component {
     this.setState({ showModal: false, journalShouldLockedId: "" });
 
   render() {
-    const {
-      journals,
-      currentPage,
-      pickedFilter,
-      pickedDate,
-    } = this.state;
+    const { journals, currentPage, pickedFilter, pickedDate } = this.state;
     return (
       <React.Fragment>
         <Container className="mt-2">
@@ -186,6 +197,7 @@ class JournalTable extends Component {
                 ? journals.map(journal => {
                     return (
                       <Box
+                        key={journal._id}
                         journal={journal}
                         showModal={this.state.showModal}
                         unlockDate={this.state.unlockDate}
@@ -211,4 +223,4 @@ class JournalTable extends Component {
   }
 }
 
-export default JournalTable;
+export default Journals;

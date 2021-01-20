@@ -9,12 +9,11 @@ function journalUrl(journalId) {
 export function getJournals(
   pageNumber,
   pageSize,
-  year = null,
-  month = null,
-  day = null
+  start = 0,
+  end = 0,
 ) {
   return http.get(
-    `${apiEndpoint}?pageNumber=${pageNumber}&pageSize=${pageSize}&year=${year}&month=${month}&day=${day}`
+    `${apiEndpoint}?pageNumber=${pageNumber}&pageSize=${pageSize}&start=${start}&end=${end}`
   );
 }
 
