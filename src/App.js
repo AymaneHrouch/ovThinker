@@ -26,6 +26,7 @@ class App extends Component {
 
   render() {
     const { user } = this.state;
+    console.log("let's do it");
     return (
       <div>
         <NavigationBar user={user} />
