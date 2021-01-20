@@ -1,13 +1,13 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const Input = ({ name, label, value, error, onChange }) => {
+const Input = ({ name, label, value, error, onChange, type = "text" }) => {
   return (
     <Form.Group controlId={name}>
       <Form.Label>{label}</Form.Label>
       <Form.Control
         name={name}
-        type={name}
+        type={type}
         placeholder={`Enter ${label}`}
         value={value}
         onChange={onChange}
