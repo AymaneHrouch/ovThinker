@@ -1,36 +1,14 @@
 import React, { Component } from "react";
-import OptionsDropdown from "./optionsDropdown";
 import { Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import OptionsDropdown from "./optionsDropdown";
 import LockModal from "./lockModal";
+import formatDate from './utils/formatDate';
+import PropTypes from 'prop-types';
 
 class Card extends Component {
-  formatDate(date) {
-    const months = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December",
-    ];
-    const month = months[date.getMonth()];
-    const hours =
-      date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
-    const minutes =
-      date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
-
-    return `${date.getDate()} ${month} ${date.getFullYear()}, ${hours}:${minutes}`;
-  }
 
   handleClose = () => {
-    console.log("false ze3ma");
     this.setState({ showModal: false });
   };
 
@@ -57,7 +35,7 @@ class Card extends Component {
         <div>
           <Badge>
             <Link to={`/journals/${journal._id}`}>
-              {this.formatDate(new Date(journal.date))}
+              {formatDate(new Date(journal.date))}
             </Link>
           </Badge>
           <OptionsDropdown {...rest} />
@@ -65,6 +43,11 @@ class Card extends Component {
       </div>
     );
   }
+}
+
+Card.propTypes = {
+  journal: PropTypes.object,
+  onStar: PropTypes.func,
 }
 
 export default Card;

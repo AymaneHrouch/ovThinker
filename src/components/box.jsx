@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import MyFormm from "./myForm";
+import MyForm from "./myForm";
 import Card from "./card";
+import PropTypes from 'prop-types';
 
 class Box extends Component {
   state = { isEdit: false };
@@ -11,9 +12,29 @@ class Box extends Component {
 
   render() {
     if (this.state.isEdit)
-      return <MyFormm {...this.props} onToggleEdit={this.handleToggleEdit} />;
+      return <MyForm {...this.props} onToggleEdit={this.handleToggleEdit} />;
     else return <Card {...this.props} onToggleEdit={this.handleToggleEdit} />;
   }
+}
+
+MyForm.propTypes = {
+  // MyForm
+  journal: PropTypes.object,
+  onSave: PropTypes.func,
+  
+  // Card
+  // journal: PropTypes.object,
+  onStar: PropTypes.func,
+
+  // Card/LockModal
+  showModal: PropTypes.number,
+  onToggleModal: PropTypes.func,
+  onDateChange: PropTypes.func,
+  onLock: PropTypes.func,
+
+  // Card/OptionsDropdown
+  onDelete: PropTypes.func,
+  // onToggleModal: PropTypes.func,
 }
 
 export default Box;

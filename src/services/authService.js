@@ -27,9 +27,11 @@ export function getCurrentUser() {
   }
 }
 
-export default {
+const auth = {
   getJwt,
   login,
   logout,
   getCurrentUser
 };
+
+export default auth;

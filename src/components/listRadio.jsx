@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class ListRadio extends Component {
-
   renderInput(name, label) {
     const { onFilter, pickedFilter } = this.props;
     return (
@@ -15,7 +15,7 @@ class ListRadio extends Component {
           checked={pickedFilter === name}
         />
         <label className="pr-3" htmlFor={name}>
-          {label} 
+          {label}
         </label>
       </React.Fragment>
     );
@@ -32,5 +32,10 @@ class ListRadio extends Component {
     );
   }
 }
+
+ListRadio.propTypes = {
+  onFilter: PropTypes.func,
+  pickedFilter: PropTypes.string,
+};
 
 export default ListRadio;

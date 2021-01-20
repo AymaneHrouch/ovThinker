@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { toast } from "react-toastify";
 import { saveJournal } from "../services/journalService";
+import PropTypes from 'prop-types';
 
-class MyFormm extends Component {
+class MyForm extends Component {
   state = {
     journal: {
       comment: "",
@@ -55,13 +56,15 @@ class MyFormm extends Component {
   };
 
   render() {
+    const { onToggleEdit } = this.props;
+    const { journal } = this.state;
     return (
       <div className="container">
         <div className="form-group d-flex flex-column align-items-center m-2">
           <label htmlFor="form">How was your day?</label>
           <textarea
             autoFocus
-            value={this.state.journal["comment"]}
+            value={journal["comment"]}
             onChange={this.handleChange}
             className="form-control mb-3"
             id="form"
@@ -73,7 +76,7 @@ class MyFormm extends Component {
               maxDate={new Date("2100")}
               required={true}
               onChange={this.handleDateChange}
-              value={new Date(this.state.journal["date"])}
+              value={new Date(journal["date"])}
             />
           </div>
           <div className="w-100">
@@ -82,8 +85,8 @@ class MyFormm extends Component {
             </button>
             <button
               className="btn btn-danger m-2"
-              onClick={this.props.onToggleEdit}
-              hidden={!this.state.journal._id}
+              onClick={onToggleEdit}
+              hidden={!journal._id}
             >
               Cancel
             </button>
@@ -94,4 +97,10 @@ class MyFormm extends Component {
   }
 }
 
-export default MyFormm;
+MyForm.propTypes = {
+  journal: PropTypes.object,
+  onToggleEdit: PropTypes.func,
+  onSave: PropTypes.func,
+}
+
+export default MyForm;

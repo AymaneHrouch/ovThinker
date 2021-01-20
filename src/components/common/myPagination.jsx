@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Pagination } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 class MyPagination extends Component {
   render() {
@@ -23,5 +24,11 @@ class MyPagination extends Component {
     );
   }
 }
+
+MyPagination.propTypes = {
+  journalsLength: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default MyPagination;

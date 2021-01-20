@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { getRandomJournal } from "../services/journalService";
 
 class Random extends Component {

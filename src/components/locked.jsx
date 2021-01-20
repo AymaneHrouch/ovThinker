@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Table, Container } from "react-bootstrap";
 import { getLockedJournals, saveJournal } from "./../services/journalService";
 import format from "./utils/formatDate";
-import MyPagination from "./myPagination";
+import MyPagination from "./common/myPagination";
 import { Link } from "react-router-dom";
 
 class Locked extends Component {
@@ -78,7 +78,7 @@ class Locked extends Component {
   };
 
   render() {
-    const { journals, currentPage, pageSize } = this.state;
+    const { journals, currentPage } = this.state;
     return (
       <React.Fragment>
         <Container>
@@ -86,7 +86,6 @@ class Locked extends Component {
           <MyPagination
             journalsLength={journals.length}
             currentPage={currentPage}
-            pageSize={pageSize}
             onChange={this.handlePagination}
           />
           <Table size="sm">
@@ -101,7 +100,7 @@ class Locked extends Component {
             <tbody>
               {journals.length !== 0 ? (
                 journals.map(journal => (
-                  <tr className="d-flex">
+                  <tr className="d-flex" key={journal._id}>
                     <td className="col-md-3">
                       {journal.unlockDate ? (
                         format(new Date(journal.date))

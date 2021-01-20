@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DatePicker from "react-date-picker";
+import PropTypes from "prop-types";
 
 class Filter extends Component {
   render() {
@@ -52,5 +53,11 @@ class Filter extends Component {
     else if (filter === "starred") return null;
   }
 }
+
+Filter.propTypes = {
+  filter: PropTypes.string,
+  pickedDate: PropTypes.instanceOf(Date),
+  onChange: PropTypes.func,
+};
 
 export default Filter;

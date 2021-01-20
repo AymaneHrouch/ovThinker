@@ -1,17 +1,17 @@
 export default function format(date) {
   const months = [
-    "Jan.",
-    "Feb.",
-    "Mar.",
-    "Apr.",
-    "May.",
-    "Jun.",
-    "Jul.",
-    "Aug.",
-    "Sep.",
-    "Oct.",
-    "Nov.",
-    "Dec.",
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   const month = months[date.getMonth()];
   const hours = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();

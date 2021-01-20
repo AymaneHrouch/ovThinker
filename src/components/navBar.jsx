@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
 const NavigationBar = ({ user }) => {
-  console.log(user);
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand as={Link} to="/">

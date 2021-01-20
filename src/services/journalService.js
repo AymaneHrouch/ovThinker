@@ -1,5 +1,4 @@
 import http from "./httpService";
-const config = require("../config.json");
 
 const apiEndpoint = `/journals`;
 

@@ -1,5 +1,6 @@
 import React from "react";
-import { Dropdown } from 'react-bootstrap';
+import { Dropdown } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const OptionsDropdown = props => {
   const { onToggleEdit, onDelete, onToggleModal } = props;
@@ -25,6 +26,12 @@ const OptionsDropdown = props => {
       </Dropdown.Menu>
     </Dropdown>
   );
+};
+
+OptionsDropdown.propTypes = {
+  onToggleEdit: PropTypes.func,
+  onDelete: PropTypes.func,
+  onToggleModal: PropTypes.func,
 };
 
 export default OptionsDropdown;

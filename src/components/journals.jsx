@@ -8,7 +8,7 @@ import {
 import { Col, Container, Row } from "react-bootstrap";
 import Filter from "./filter";
 import ListRadio from "./listRadio";
-import MyPagination from "./myPagination";
+import MyPagination from "./common/myPagination";
 import { deleteJournal } from "./../services/journalService";
 import { toast } from "react-toastify";
 import Box from "./box";
@@ -154,7 +154,6 @@ class JournalTable extends Component {
     const {
       journals,
       currentPage,
-      pageSize,
       pickedFilter,
       pickedDate,
     } = this.state;
@@ -176,7 +175,6 @@ class JournalTable extends Component {
                 <MyPagination
                   journalsLength={journals.length}
                   currentPage={currentPage}
-                  pageSize={pageSize}
                   onChange={this.handlePagination}
                 />
                 <span className="sm-quote d-none d-md-block">
