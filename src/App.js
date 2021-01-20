@@ -45,7 +45,7 @@ class App extends Component {
             path="/login"
             render={props => {
               if (auth.getCurrentUser()) return <Redirect to="/new" />;
-              return <LoginForm />;
+              return <LoginForm/>;
             }}
           />
           <Route path="/logout" component={Logout} />
@@ -53,7 +53,7 @@ class App extends Component {
             path="/register"
             render={props => {
               if (auth.getCurrentUser()) return <Redirect to="/new" />;
-              return <RegisterForm />;
+              return <RegisterForm {...props}/>;
             }}
           />
           <Route path="/not-found" component={NotFound} />
