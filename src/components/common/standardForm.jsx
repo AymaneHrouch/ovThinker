@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Joi from 'joi-browser';
-import Input from './../input';
-import { Button } from 'react-bootstrap';
+import Joi from "joi-browser";
+import Input from "./../input";
+import { Button } from "react-bootstrap";
 
 class StandardForm extends Component {
   state = {
@@ -72,7 +72,6 @@ class StandardForm extends Component {
       </Button>
     );
   };
-
 }
 
 export default StandardForm;
