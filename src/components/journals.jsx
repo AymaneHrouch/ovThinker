@@ -4,12 +4,12 @@ import {
   getJournals,
   getStarredJournals,
   saveJournal,
+  deleteJournal
 } from "../services/journalService";
 import { Col, Container, Row } from "react-bootstrap";
 import Filter from "./filter";
 import ListRadio from "./listRadio";
 import MyPagination from "./common/myPagination";
-import { deleteJournal } from "./../services/journalService";
 import { toast } from "react-toastify";
 import Box from "./box";
 
@@ -111,9 +111,12 @@ class Journals extends Component {
   };
 
   handleDelete = async journalId => {
-    await deleteJournal(journalId);
-    await this.getRequiredJournals();
-    toast.info("deleted");
+    if(window.confirm("Are you sure you want to permanently delete this diary?"))
+    {
+      await deleteJournal(journalId);
+      await this.getRequiredJournals();
+      toast.info("deleted");
+    }
   };
 
   handleDateChange = unlockDate => {

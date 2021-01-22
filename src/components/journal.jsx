@@ -24,9 +24,13 @@ class Journal extends Component {
   }
 
   handleDelete = () => {
-    deleteJournal(this.state.journal._id);
-    toast.info("Deleted");
-    this.props.history.replace("/testform");
+    if (
+      window.confirm("Are you sure you want to permanently delete this diary?")
+    ) {
+      deleteJournal(this.state.journal._id);
+      toast.info("Deleted");
+      this.props.history.replace("/new");
+    }
   };
 
   handleStar = async () => {
