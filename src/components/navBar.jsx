@@ -22,14 +22,19 @@ const NavigationBar = ({ user }) => {
               <Nav.Link as={NavLink} exact to="/locked">
                 Locked
               </Nav.Link>
-              {user && <NavDropdown title={user.name} className="ml-md-auto">
-                <NavDropdown.Item as={Link} to="/settings">
-                  Settings
-                </NavDropdown.Item>
-                <NavDropdown.Item as={Link} to="/logout">
-                  Log out
-                </NavDropdown.Item>
-              </NavDropdown>} 
+              {user && (
+                <NavDropdown
+                  title={user.name}
+                  className="ml-md-auto mr-lg-4 pr-lg-4"
+                >
+                  <NavDropdown.Item as={Link} to="/settings">
+                    Settings
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/logout">
+                    Log out
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </React.Fragment>
           )}
           {!user && (

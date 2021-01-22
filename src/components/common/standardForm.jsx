@@ -53,7 +53,6 @@ class StandardForm extends Component {
   confirmPassword = () => {
     const { password, confirmPassword } = this.state.data;
 
-    console.log(password, confirmPassword)
     if (password !== confirmPassword) {
       const errors = {};
       errors["confirmPassword"] = "Passwords don't match";

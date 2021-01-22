@@ -11,7 +11,7 @@ class LoginForm extends StandardForm {
       name: "",
       email: "",
       password: "",
-      confirm_password: "",
+      confirmPassword: "",
     },
     errors: {},
   };
@@ -19,8 +19,8 @@ class LoginForm extends StandardForm {
   schema = {
     name: Joi.string().required().max(30).min(3).label("Name"),
     email: Joi.string().email().required().label("Email"),
-    password: Joi.string().required().min(5).label("Password"),
-    confirm_password: Joi.string().required().min(5).label("Password"),
+    password: Joi.string().required().min(8).label("Password"),
+    confirmPassword: Joi.string().label("Password confirmation"),
   };
 
   doSubmit = async () => {
@@ -34,7 +34,6 @@ class LoginForm extends StandardForm {
       this.props.history.push("/login");
     } catch (ex) {
       const errors = { ...this.state.errors };
-      console.log(ex.response);
       errors.email = ex.response.data;
       this.setState({ errors });
     }
