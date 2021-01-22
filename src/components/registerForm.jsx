@@ -24,14 +24,7 @@ class LoginForm extends StandardForm {
   };
 
   doSubmit = async () => {
-    const { password, confirm_password } = this.state.data;
-
-    if (password !== confirm_password) {
-      const errors = {};
-      errors["confirm_password"] = "Passwords don't match";
-      this.setState({ errors });
-      return
-    }
+    if(!this.confirmPassword()) return
 
     try {
       const { data } = this.state;
@@ -58,8 +51,8 @@ class LoginForm extends StandardForm {
           {this.renderInput("email", "Email", "email")}
           {this.renderInput("password", "Password", "password")}
           {this.renderInput(
-            "confirm_password",
-            "Password Confirmation",
+            "confirmPassword",
+            "Re-type password",
             "password"
           )}
           {this.renderButton("Register")}
