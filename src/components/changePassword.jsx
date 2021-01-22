@@ -16,9 +16,9 @@ class ChangePassword extends StandardForm {
   };
 
   schema = {
-    oldPassword: Joi.string().required().min(5).label("Password"),
-    password: Joi.string().required().min(5).label("Password"),
-    confirmPassword: Joi.string().required().min(5).label("Password"),
+    oldPassword: Joi.string().required().min(4).label("Password"),
+    password: Joi.string().required().min(4).label("Password"),
+    confirmPassword: Joi.string().required().min(4).label("Password"),
   };
 
   doSubmit = async () => {
