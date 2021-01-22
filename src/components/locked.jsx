@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, Container } from "react-bootstrap";
+import { Row, Container, Col } from "react-bootstrap";
 import { getLockedJournals, saveJournal } from "./../services/journalService";
 import format from "./utils/formatDate";
 import MyPagination from "./common/myPagination";
@@ -88,20 +88,15 @@ class Locked extends Component {
             currentPage={currentPage}
             onChange={this.handlePagination}
           />
-          <Table size="sm">
-            <thead>
-              <tr className="d-flex">
-                <th className="col-md-3">Diary</th>
-                <th className="col-md-3">Status</th>
-                <th className="col-md-0"></th>
-              </tr>
-            </thead>
-
-            <tbody>
+            <Row className="p-2 border-bottom">
+                <Col xs={5}><strong>Diary</strong></Col>
+                <Col xs={5}><strong>Status</strong></Col>
+                <Col xs={2}></Col>
+            </Row>
               {journals.length !== 0 ? (
                 journals.map(journal => (
-                  <tr className="d-flex" key={journal._id}>
-                    <td className="col-md-3">
+                  <Row key={journal._id} className="p-2">
+                    <Col xs={5}>
                       {journal.unlockDate ? (
                         format(new Date(journal.date))
                       ) : (
@@ -112,8 +107,8 @@ class Locked extends Component {
                           {format(new Date(journal.date))}
                         </Link>
                       )}
-                    </td>
-                    <td className="col-md-3">
+                    </Col>
+                    <Col xs={5}>
                       {new Date() > new Date(journal.unlockDate) ? (
                         <span className="font-weight-bold text-success">
                           [Unlockable]
@@ -121,8 +116,8 @@ class Locked extends Component {
                       ) : (
                         `Locked until ${format(new Date(journal.unlockDate))}`
                       )}
-                    </td>
-                    <td className="col-md-0">
+                    </Col>
+                    <Col xs={2}>
                       <button
                         disabled={new Date() <= new Date(journal.unlockDate)}
                         onClick={event => {
@@ -135,8 +130,8 @@ class Locked extends Component {
                       >
                         <i className="fa fa-lock"></i>
                       </button>
-                    </td>
-                  </tr>
+                    </Col>
+                  </Row>
                 ))
               ) : (
                 <span className="text-align-center">
@@ -144,8 +139,6 @@ class Locked extends Component {
                   forever.”
                 </span>
               )}
-            </tbody>
-          </Table>
         </Container>
       </React.Fragment>
     );
