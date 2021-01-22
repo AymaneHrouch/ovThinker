@@ -1,7 +1,7 @@
 import React from "react";
 import StandardForm from "./common/standardForm";
 import Joi from "joi-browser";
-import { Container, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { changePassword } from "../services/userService";
 import { toast } from "react-toastify";
 

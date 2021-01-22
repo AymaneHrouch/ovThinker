@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import React from "react";
+import { Container, Form } from "react-bootstrap";
 import Joi from "joi-browser";
 import auth from "./../services/authService";
 import StandardForm from "./common/standardForm";

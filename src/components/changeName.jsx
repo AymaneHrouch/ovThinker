@@ -1,6 +1,6 @@
 import React from "react";
 import StandardForm from "./common/standardForm";
-import { Container, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import Joi from "joi-browser";
 import { changeName } from "../services/userService";
 import { toast } from "react-toastify";
@@ -29,7 +29,6 @@ class ChangeName extends StandardForm {
     toast.success("SAVED!");
   };
   render() {
-    const { saved } = this.state;
     return (
       <React.Fragment>
         <h3 className="text-center mb-4">Change Name</h3>
