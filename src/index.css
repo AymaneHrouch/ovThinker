@@ -22,3 +22,7 @@ body {
 table {
   table-layout: fixed;
 }
+
+.alert-success {
+  margin-top: -1rem;
+}

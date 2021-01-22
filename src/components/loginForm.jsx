@@ -25,14 +25,12 @@ class LoginForm extends StandardForm {
       window.location = "/";
     } catch (ex) {
       const errors = { ...this.state.errors };
-      console.log(ex.response);
       errors.email = ex.response.data;
       this.setState({ errors });
     }
   };
 
   render() {
-    const { data, errors } = this.state;
     return (
       <Container>
         <Form

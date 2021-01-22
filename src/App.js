@@ -11,8 +11,10 @@ import Random from "./components/random";
 import Logout from "./components/logout";
 import RegisterForm from "./components/registerForm";
 import LoginForm from "./components/loginForm";
-import auth from "./services/authService";
 import ProtectedRoute from "./components/common/protectedRoute";
+import Profile from "./components/profile";
+import Settings from './components/settings';
+import auth from "./services/authService";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -24,9 +26,11 @@ class App extends Component {
     this.setState({ user });
   }
 
+  handleChangeName = name => this.setState({ name });
+
   render() {
     const { user } = this.state;
-    console.log("let's do it");
+    
     return (
       <div>
         <NavigationBar user={user} />
@@ -41,11 +45,13 @@ class App extends Component {
           <ProtectedRoute path="/journals" component={Journals} />
           <ProtectedRoute path="/random" component={Random} />
           <ProtectedRoute path="/new" component={MyForm} />
+          <ProtectedRoute path="/settings" component={Settings} />
+          <ProtectedRoute path="/profile" component={Profile} />
           <Route
             path="/login"
             render={props => {
               if (auth.getCurrentUser()) return <Redirect to="/new" />;
-              return <LoginForm/>;
+              return <LoginForm />;
             }}
           />
           <Route path="/logout" component={Logout} />
@@ -53,7 +59,7 @@ class App extends Component {
             path="/register"
             render={props => {
               if (auth.getCurrentUser()) return <Redirect to="/new" />;
-              return <RegisterForm {...props}/>;
+              return <RegisterForm {...props} />;
             }}
           />
           <Route path="/not-found" component={NotFound} />
