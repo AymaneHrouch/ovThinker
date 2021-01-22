@@ -37,17 +37,30 @@ class StandardForm extends Component {
 
     this.doSubmit();
   };
-
+  
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProprety(input);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
-
+    
     const data = { ...this.state.data };
     data[input.name] = input.value;
-
+    
     this.setState({ data, errors });
+  };
+  
+  confirmPassword = () => {
+    const { password, confirmPassword } = this.state.data;
+
+    console.log(password, confirmPassword)
+    if (password !== confirmPassword) {
+      const errors = {};
+      errors["confirmPassword"] = "Passwords don't match";
+      this.setState({ errors });
+      return false;
+    }
+    else return true;
   };
 
   renderInput = (name, label, type = "text") => {
@@ -72,6 +85,7 @@ class StandardForm extends Component {
       </Button>
     );
   };
+
 }
 
 export default StandardForm;
