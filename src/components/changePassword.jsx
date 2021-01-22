@@ -16,9 +16,9 @@ class ChangePassword extends StandardForm {
   };
 
   schema = {
-    oldPassword: Joi.string().required().min(4).label("Password"),
-    password: Joi.string().required().min(4).label("Password"),
-    confirmPassword: Joi.string().required().min(4).label("Password"),
+    oldPassword: Joi.string().required().label("Current password"),
+    password: Joi.string().required().min(8).label("New password"),
+    confirmPassword: Joi.string().label("Password confirmation"),
   };
 
   doSubmit = async () => {
@@ -41,7 +41,7 @@ class ChangePassword extends StandardForm {
       <React.Fragment>
         <h3 className="text-center mb-4">Change Password</h3>
         <Form className="ml-auto mr-auto mb-4" onSubmit={this.handleSubmit}>
-          {this.renderInput("oldPassword", "Password", "password")}
+          {this.renderInput("oldPassword", "Current password", "password")}
           {this.renderInput("password", "New password", "password")}
           {this.renderInput(
             "confirmPassword",
