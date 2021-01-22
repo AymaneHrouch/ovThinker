@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
 const NavigationBar = ({ user }) => {
@@ -22,12 +22,14 @@ const NavigationBar = ({ user }) => {
               <Nav.Link as={NavLink} exact to="/locked">
                 Locked
               </Nav.Link>
-              <Nav.Link as={NavLink} exact to="/logout">
-                Logout
-              </Nav.Link>
-              <Nav.Link as={NavLink} exact to="/profile" className="ml-md-auto">
-                {user ? user.name : ""}
-              </Nav.Link>
+              {user && <NavDropdown title={user.name} className="ml-md-auto">
+                <NavDropdown.Item as={Link} to="/settings">
+                  Settings
+                </NavDropdown.Item>
+                <NavDropdown.Item as={Link} to="/logout">
+                  Log out
+                </NavDropdown.Item>
+              </NavDropdown>} 
             </React.Fragment>
           )}
           {!user && (
