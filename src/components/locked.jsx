@@ -88,57 +88,62 @@ class Locked extends Component {
             currentPage={currentPage}
             onChange={this.handlePagination}
           />
+          {journals.length !== 0 && (
             <Row className="p-2 border-bottom">
-                <Col xs={5}><strong>Diary</strong></Col>
-                <Col xs={5}><strong>Status</strong></Col>
-                <Col xs={2}></Col>
+              <Col xs={5}>
+                <strong>Diary</strong>
+              </Col>
+              <Col xs={5}>
+                <strong>Status</strong>
+              </Col>
+              <Col xs={2}></Col>
             </Row>
-              {journals.length !== 0 ? (
-                journals.map(journal => (
-                  <Row key={journal._id} className="p-2">
-                    <Col xs={5}>
-                      {journal.unlockDate ? (
-                        format(new Date(journal.date))
-                      ) : (
-                        <Link
-                          className="font-weight-bold"
-                          to={`/journals/${journal._id}`}
-                        >
-                          {format(new Date(journal.date))}
-                        </Link>
-                      )}
-                    </Col>
-                    <Col xs={5}>
-                      {new Date() > new Date(journal.unlockDate) ? (
-                        <span className="font-weight-bold text-success">
-                          [Unlockable]
-                        </span>
-                      ) : (
-                        `Locked until ${format(new Date(journal.unlockDate))}`
-                      )}
-                    </Col>
-                    <Col xs={2}>
-                      <button
-                        disabled={new Date() <= new Date(journal.unlockDate)}
-                        onClick={event => {
-                          this.handleClick(event);
-                          this.handleSave(journal);
-                        }}
-                        onMouseEnter={this.handleMouseEnter}
-                        onMouseLeave={this.handleMouseLeave}
-                        className="btn btn-primary btn-sm"
-                      >
-                        <i className="fa fa-lock"></i>
-                      </button>
-                    </Col>
-                  </Row>
-                ))
-              ) : (
-                <span className="text-align-center">
-                  “A moment lasts all of a second, but the memory lives on
-                  forever.”
-                </span>
-              )}
+          )}
+          {journals.length !== 0 ? (
+            journals.map(journal => (
+              <Row key={journal._id} className="p-2">
+                <Col xs={5}>
+                  {journal.unlockDate ? (
+                    format(new Date(journal.date))
+                  ) : (
+                    <Link
+                      className="font-weight-bold"
+                      to={`/journals/${journal._id}`}
+                    >
+                      {format(new Date(journal.date))}
+                    </Link>
+                  )}
+                </Col>
+                <Col xs={5}>
+                  {new Date() > new Date(journal.unlockDate) ? (
+                    <span className="font-weight-bold text-success">
+                      [Unlockable]
+                    </span>
+                  ) : (
+                    `Locked until ${format(new Date(journal.unlockDate))}`
+                  )}
+                </Col>
+                <Col xs={2}>
+                  <button
+                    disabled={new Date() <= new Date(journal.unlockDate)}
+                    onClick={event => {
+                      this.handleClick(event);
+                      this.handleSave(journal);
+                    }}
+                    onMouseEnter={this.handleMouseEnter}
+                    onMouseLeave={this.handleMouseLeave}
+                    className="btn btn-primary btn-sm"
+                  >
+                    <i className="fa fa-lock"></i>
+                  </button>
+                </Col>
+              </Row>
+            ))
+          ) : (
+            <span className="text-align-center">
+              “A moment lasts all of a second, but the memory lives on forever.”
+            </span>
+          )}
         </Container>
       </React.Fragment>
     );
