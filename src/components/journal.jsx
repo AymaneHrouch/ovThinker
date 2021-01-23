@@ -23,16 +23,6 @@ class Journal extends Component {
     }
   }
 
-  handleDelete = () => {
-    if (
-      window.confirm("Are you sure you want to permanently delete this diary?")
-    ) {
-      deleteJournal(this.state.journal._id);
-      toast.info("Deleted");
-      this.props.history.replace("/new");
-    }
-  };
-
   handleStar = async () => {
     let journal = this.state.journal;
 
@@ -48,10 +38,14 @@ class Journal extends Component {
   };
 
   handleDelete = async journalId => {
-    toast.info("Deleted");
+    if (
+      window.confirm("Are you sure you want to permanently delete this diary?")
+    ) {
+      toast.info("Deleted");
 
-    this.props.history.replace("/new");
-    await deleteJournal(journalId);
+      this.props.history.replace("/new");
+      await deleteJournal(journalId);
+    }
   };
 
   handleDateChange = unlockDate => {
