@@ -2,9 +2,9 @@ import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
 
-const NavigationBar = ({ user }) => {
+const NavigationBar = ({ user, theme, themeToggler }) => {
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar bg={theme} variant={theme} expand="lg">
       <Navbar.Brand as={Link} to="/">
         overThinker
       </Navbar.Brand>
@@ -43,7 +43,7 @@ const NavigationBar = ({ user }) => {
                 as={NavLink}
                 exact
                 to="/register"
-                className="ml-md-auto"
+                className="ml-lg-auto"
               >
                 Register
               </Nav.Link>
@@ -52,6 +52,13 @@ const NavigationBar = ({ user }) => {
               </Nav.Link>
             </React.Fragment>
           )}
+          <Nav.Link onClick={themeToggler}>
+            <i
+              class={`mr-2 fa fa-toggle-${theme === "dark" ? "on" : "off"}`}
+              aria-hidden="true"
+            ></i>
+            <i class="fa fa-moon-o" aria-hidden="true"></i>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
