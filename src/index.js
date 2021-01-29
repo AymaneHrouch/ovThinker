@@ -5,13 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
 import { BrowserRouter } from "react-router-dom";
+import HttpsRedirect from "react-https-redirect";
 import "./index.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <HttpsRedirect>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </HttpsRedirect>
   </React.StrictMode>,
   document.getElementById("root")
 );
