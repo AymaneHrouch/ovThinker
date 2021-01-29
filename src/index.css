@@ -14,15 +14,19 @@ body {
   cursor: pointer;
 }
 
-.journalCard {
-  white-space: pre-line;
-  overflow-wrap: break-word;
-}
-
 table {
   table-layout: fixed;
 }
 
 .alert-success {
   margin-top: -1rem;
+}
+
+.react-date-picker__inputGroup span,
+.react-date-picker__inputGroup input,
+.react-date-picker__inputGroup__divider,
+.react-datetime-picker__inputGroup span,
+.react-datetime-picker__inputGroup input,
+.react-datetime-picker__inputGroup__divider {
+  color: #007bff !important;
 }
