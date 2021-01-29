@@ -3,11 +3,19 @@ import { Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import OptionsDropdown from "./optionsDropdown";
 import LockModal from "./lockModal";
-import formatDate from './utils/formatDate';
-import PropTypes from 'prop-types';
+import formatDate from "./utils/formatDate";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const StyledCard = styled.div`
+  white-space: pre-line;
+  overflow-wrap: break-word;
+  background-color: ${({ theme }) => theme.card};
+  border: ${({ theme }) => theme.cardBorder};
+  border-radius: 15px;
+`;
 
 class Card extends Component {
-
   handleClose = () => {
     this.setState({ showModal: false });
   };
@@ -15,7 +23,7 @@ class Card extends Component {
   render() {
     const { journal, onStar, ...rest } = this.props;
     return (
-      <div className="journalCard container my-2 p-3 border rounded">
+      <StyledCard className="container my-3 p-3">
         <p>
           <LockModal {...rest} />
           <Badge className="float-right">
@@ -40,7 +48,7 @@ class Card extends Component {
           </Badge>
           <OptionsDropdown {...rest} />
         </div>
-      </div>
+      </StyledCard>
     );
   }
 }
@@ -48,6 +56,6 @@ class Card extends Component {
 Card.propTypes = {
   journal: PropTypes.object,
   onStar: PropTypes.func,
-}
+};
 
 export default Card;
