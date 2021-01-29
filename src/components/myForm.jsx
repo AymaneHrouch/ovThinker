@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { toast } from "react-toastify";
 import { saveJournal } from "../services/journalService";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import styled from "styled-components";
+
+const TextArea = styled.textarea`
+  background-color: ${({ theme }) => theme.card} !important;
+  color: ${({ theme }) => theme.text} !important;
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  width: 100%;
+`;
 
 class MyForm extends Component {
   state = {
@@ -58,18 +67,19 @@ class MyForm extends Component {
   render() {
     const { onToggleEdit } = this.props;
     const { journal } = this.state;
+
     return (
       <div className="container">
         <div className="form-group d-flex flex-column align-items-center m-2">
           <label htmlFor="form">How was your day?</label>
-          <textarea
+          <TextArea
             autoFocus
             value={journal["comment"]}
             onChange={this.handleChange}
             className="form-control mb-3"
             id="form"
             rows="10"
-          ></textarea>
+          ></TextArea>
           <div className="w-100 mb-2">
             <DateTimePicker
               minDate={new Date("1900")}
@@ -101,6 +111,7 @@ MyForm.propTypes = {
   journal: PropTypes.object,
   onToggleEdit: PropTypes.func,
   onSave: PropTypes.func,
-}
+  theme: PropTypes.string,
+};
 
 export default MyForm;
