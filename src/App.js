@@ -1,7 +1,8 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import Locked from "./components/locked";
+import { ThemeProvider } from "styled-components";
 import NavigationBar from "./components/navBar";
 import MyForm from "./components/myForm";
 import NotFound from "./components/not-found";
@@ -15,29 +16,27 @@ import ProtectedRoute from "./components/common/protectedRoute";
 import Profile from "./components/profile";
 import Settings from "./components/settings";
 import auth from "./services/authService";
+import { GlobalStyles } from "./components/styling/GlobalStyle";
+import { lightTheme, darkTheme } from "./components/styling/Themes";
+import { useDarkMode } from "./components/styling/useDarkMode";
 import "./App.css";
 import "react-toastify/dist/ReactToastify.css";
 
-import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./components/GlobalStyle";
-import { lightTheme, darkTheme } from "./components/Themes";
-import { useDarkMode } from "./useDarkMode";
-import { useState, useEffect } from "react";
-
 const App = () => {
   const [user, setUser] = useState();
-  const [theme, setTheme] = useState("light")
+  const [theme, themeToggler, mountedComponent] = useDarkMode();
+
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
 
   useEffect(() => {
     setUser(auth.getCurrentUser());
   }, []);
 
-  // handleChangeName = name => this.setState({ name });
-
+  if (!mountedComponent) return null;
   return (
-    <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
+    <ThemeProvider theme={themeMode}>
       <GlobalStyles />
-      <NavigationBar user={user} />
+      <NavigationBar user={user} theme={theme} themeToggler={themeToggler} />
       <ToastContainer
         position="bottom-center"
         autoClose={3000}
