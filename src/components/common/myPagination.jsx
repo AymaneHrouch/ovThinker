@@ -15,28 +15,25 @@ class MyPagination extends Component {
 
       & li:first-child {
         border-radius: 15px 0 0 15px;
-        display: ${currentPage <= 1 && "none"};
+        // display: ${currentPage <= 1 && "none"};
+        color: ${currentPage <= 1 && "#333"};
+        cursor: ${currentPage <= 1 && "auto"};
       }
 
       & li:last-child {
         border-radius: 0 15px 15px 0;
-        display: ${journalsLength === 0 && "none"}
+        color: ${journalsLength === 0 && "#333"};
+        cursor: ${journalsLength === 0 && "auto"};
       }
     `;
 
     return (
       <StyledUl className="pagination">
-        <li
-          className="page-link"
-          onClick={() => onChange("prev")}
-        >
+        <li className="page-link" onClick={() => onChange("prev")}>
           <i className="fa fa-chevron-left pr-1" aria-hidden="true"></i>
           Previous
         </li>
-        <li
-          className="page-link"
-          onClick={() => onChange("next")}
-        >
+        <li className="page-link" onClick={() => onChange("next")}>
           Next <i className="fa fa-chevron-right pl-1" aria-hidden="true"></i>
         </li>
       </StyledUl>
