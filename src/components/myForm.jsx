@@ -9,7 +9,7 @@ const TextArea = styled.textarea`
   background-color: ${({ theme }) => theme.card} !important;
   color: ${({ theme }) => theme.text} !important;
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   width: 100%;
 `;
 
