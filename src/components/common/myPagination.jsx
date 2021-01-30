@@ -7,23 +7,37 @@ class MyPagination extends Component {
     const { currentPage, journalsLength, onChange } = this.props;
 
     const StyledUl = styled.ul`
-      cursor: pointer;
       & li {
         background: ${({ theme }) => theme.card};
         border: ${({ theme }) => theme.cardBorder};
+        color: ${({ theme }) => theme.paginationBtn};
+        cursor: pointer;
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+        -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+        user-select: none;
+      }
+
+      & li:hover {
+        border: ${({ theme }) => theme.cardBorder};
+        background: ${({ theme }) => theme.hoverBtn};
+        color: ${({ theme }) => theme.paginationBtn};
       }
 
       & li:first-child {
         border-radius: 15px 0 0 15px;
-        // display: ${currentPage <= 1 && "none"};
-        color: ${currentPage <= 1 && "#333"};
-        cursor: ${currentPage <= 1 && "auto"};
+        background: ${({ theme }) => currentPage <= 1 && theme.body};
+        color: ${({ theme }) => currentPage <= 1 && theme.disabledText};
+        cursor: ${() => currentPage <= 1 && "default"};
       }
 
       & li:last-child {
         border-radius: 0 15px 15px 0;
-        color: ${journalsLength === 0 && "#333"};
-        cursor: ${journalsLength === 0 && "auto"};
+        background: ${({ theme }) => journalsLength === 0 && theme.body};
+        color: ${({ theme }) => journalsLength === 0 && theme.disabledText};
+        cursor: ${() => journalsLength === 0 && "default"};
       }
     `;
 
