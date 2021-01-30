@@ -4,7 +4,7 @@ import {
   getJournals,
   getStarredJournals,
   saveJournal,
-  deleteJournal
+  deleteJournal,
 } from "../services/journalService";
 import { Col, Container, Row } from "react-bootstrap";
 import Filter from "./filter";
@@ -12,6 +12,15 @@ import ListRadio from "./listRadio";
 import MyPagination from "./common/myPagination";
 import { toast } from "react-toastify";
 import Box from "./box";
+import styled from "styled-components";
+
+const StyledPagination = styled.div`
+  display: none;
+  padding: 8px;
+  @media only screen and (max-width: 600px) {
+    display: block;
+  }
+`;
 
 class Journals extends Component {
   state = {
@@ -111,8 +120,9 @@ class Journals extends Component {
   };
 
   handleDelete = async journalId => {
-    if(window.confirm("Are you sure you want to permanently delete this diary?"))
-    {
+    if (
+      window.confirm("Are you sure you want to permanently delete this diary?")
+    ) {
       await deleteJournal(journalId);
       await this.getRequiredJournals();
       toast.info("deleted");
@@ -218,6 +228,17 @@ class Journals extends Component {
                   })
                 : `“Journaling helps you to remember how strong you truly are
               within yourself.”`}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <StyledPagination>
+                <MyPagination
+                  journalsLength={journals.length}
+                  currentPage={currentPage}
+                  onChange={this.handlePagination}
+                />
+              </StyledPagination>
             </Col>
           </Row>
         </Container>
