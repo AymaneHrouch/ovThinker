@@ -56,7 +56,6 @@ class MyPagination extends Component {
 }
 
 MyPagination.propTypes = {
-  journalpagsLength: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
 };
