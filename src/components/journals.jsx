@@ -212,28 +212,30 @@ class Journals extends Component {
               </div>
             </Col>
             <StyledCol sm={8}>
-              {journals.length !== 0
-                ? journals.map(journal => {
-                    return (
-                      <Box
-                        key={journal._id}
-                        journal={journal}
-                        showModal={this.state.showModal}
-                        unlockDate={this.state.unlockDate}
-                        url={this.props.match.url}
-                        onToggleModal={() =>
-                          this.handleToggleModal(journal._id)
-                        }
-                        onLock={() => this.handleLock(journal._id)}
-                        onDateChange={this.handleDateChange}
-                        onSave={this.handleSave}
-                        onDelete={() => this.handleDelete(journal._id)}
-                        onStar={() => this.handleStar(journal)}
-                      />
-                    );
-                  })
-                : `“Journaling helps you to remember how strong you truly are
-              within yourself.”`}
+              {journals.length !== 0 ? (
+                journals.map(journal => {
+                  return (
+                    <Box
+                      key={journal._id}
+                      journal={journal}
+                      showModal={this.state.showModal}
+                      unlockDate={this.state.unlockDate}
+                      url={this.props.match.url}
+                      onToggleModal={() => this.handleToggleModal(journal._id)}
+                      onLock={() => this.handleLock(journal._id)}
+                      onDateChange={this.handleDateChange}
+                      onSave={this.handleSave}
+                      onDelete={() => this.handleDelete(journal._id)}
+                      onStar={() => this.handleStar(journal)}
+                    />
+                  );
+                })
+              ) : (
+                <div className="p-3">
+                  “Journaling helps you to remember how strong you truly are
+                  within yourself.”
+                </div>
+              )}
             </StyledCol>
           </Row>
           <Row>
