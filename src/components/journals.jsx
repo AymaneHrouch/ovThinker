@@ -22,7 +22,7 @@ const StyledPagination = styled.div`
   }
 `;
 
-const StyledContainer = styled(Container)`
+const StyledCol = styled(Col)`
   @media only screen and (max-width: 600px) {
     padding: 0;
   }
@@ -188,7 +188,7 @@ class Journals extends Component {
     const { journals, currentPage, pickedFilter, pickedDate } = this.state;
     return (
       <React.Fragment>
-        <StyledContainer className="mt-2">
+        <Container className="mt-2">
           <Row>
             <Col>
               <div className="sticky-top p-2">
@@ -211,7 +211,7 @@ class Journals extends Component {
                 </span>
               </div>
             </Col>
-            <Col sm={8}>
+            <StyledCol sm={8}>
               {journals.length !== 0
                 ? journals.map(journal => {
                     return (
@@ -234,7 +234,7 @@ class Journals extends Component {
                   })
                 : `“Journaling helps you to remember how strong you truly are
               within yourself.”`}
-            </Col>
+            </StyledCol>
           </Row>
           <Row>
             <Col>
@@ -247,7 +247,7 @@ class Journals extends Component {
               </StyledPagination>
             </Col>
           </Row>
-        </StyledContainer>
+        </Container>
       </React.Fragment>
     );
   }
