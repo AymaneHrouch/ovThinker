@@ -54,10 +54,10 @@ const NavigationBar = ({ user, theme, themeToggler }) => {
           )}
           <Nav.Link onClick={themeToggler}>
             <i
-              class={`mr-2 fa fa-toggle-${theme === "dark" ? "on" : "off"}`}
+              className={`mr-2 fa fa-toggle-${theme === "dark" ? "on" : "off"}`}
               aria-hidden="true"
             ></i>
-            <i class="fa fa-moon-o" aria-hidden="true"></i>
+            <i className="fa fa-moon-o" aria-hidden="true"></i>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
