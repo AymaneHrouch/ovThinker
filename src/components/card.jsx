@@ -13,6 +13,11 @@ const StyledCard = styled.div`
   background-color: ${({ theme }) => theme.card};
   border: ${({ theme }) => theme.cardBorder};
   border-radius: 15px;
+  @media only screen and (max-width: 600px) {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
 `;
 
 class Card extends Component {

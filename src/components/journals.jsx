@@ -22,6 +22,12 @@ const StyledPagination = styled.div`
   }
 `;
 
+const StyledContainer = styled(Container)`
+  @media only screen and (max-width: 600px) {
+    padding: 0;
+  }
+`;
+
 class Journals extends Component {
   state = {
     journals: [],
@@ -182,7 +188,7 @@ class Journals extends Component {
     const { journals, currentPage, pickedFilter, pickedDate } = this.state;
     return (
       <React.Fragment>
-        <Container className="mt-2">
+        <StyledContainer className="mt-2">
           <Row>
             <Col>
               <div className="sticky-top p-2">
@@ -241,7 +247,7 @@ class Journals extends Component {
               </StyledPagination>
             </Col>
           </Row>
-        </Container>
+        </StyledContainer>
       </React.Fragment>
     );
   }
