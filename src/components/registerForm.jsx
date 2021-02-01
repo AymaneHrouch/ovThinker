@@ -1,9 +1,10 @@
 import React from "react";
 import { Container, Form } from "react-bootstrap";
 import Joi from "joi-browser";
+import { toast } from "react-toastify";
 import auth from "./../services/authService";
 import StandardForm from "./common/standardForm";
-import { toast } from "react-toastify";
+import Loader from "./common/loader";
 
 class LoginForm extends StandardForm {
   state = {
@@ -14,6 +15,7 @@ class LoginForm extends StandardForm {
       confirmPassword: "",
     },
     errors: {},
+    loading: false,
   };
 
   schema = {
@@ -23,8 +25,9 @@ class LoginForm extends StandardForm {
     confirmPassword: Joi.string().label("Password confirmation"),
   };
 
+
   doSubmit = async () => {
-    if(!this.confirmPassword()) return
+    if (!this.confirmPassword()) return;
 
     try {
       const { data } = this.state;
@@ -35,13 +38,15 @@ class LoginForm extends StandardForm {
     } catch (ex) {
       const errors = { ...this.state.errors };
       errors.email = ex.response.data;
-      this.setState({ errors });
+      this.setState({ errors, loading: false });
     }
   };
 
   render() {
+    const { loading } = this.state;
     return (
       <Container>
+        {loading && <Loader fontSize="3rem" />}
         <Form
           className="col-md-3 mt-4 ml-auto mr-auto"
           onSubmit={this.handleSubmit}
@@ -49,11 +54,7 @@ class LoginForm extends StandardForm {
           {this.renderInput("name", "Name", "text")}
           {this.renderInput("email", "Email", "email")}
           {this.renderInput("password", "Password", "password")}
-          {this.renderInput(
-            "confirmPassword",
-            "Re-type password",
-            "password"
-          )}
+          {this.renderInput("confirmPassword", "Re-type password", "password")}
           {this.renderButton("Register")}
         </Form>
       </Container>
