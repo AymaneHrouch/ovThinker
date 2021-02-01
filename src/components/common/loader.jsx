@@ -1,23 +1,21 @@
 import React from "react";
-import propTypes from "react-bootstrap/esm/Image";
-import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Loader = props => {
-  const StyledDiv = styled.div`
-    text-align: center;
-    font-size: ${props.fontSize};
-    color: #007bff;
-  `;
-
+  const divStyle = {
+    textAlign: "center",
+    fontSize: props.fontSize,
+    color: "#007bff",
+  };
   return (
-    <StyledDiv>
+    <div style={divStyle}>
       <i className="fa fa-spinner fa-spin" />
-    </StyledDiv>
+    </div>
   );
 };
 
 Loader.propTypes = {
-  fontSize: propTypes.string,
+  fontSize: PropTypes.string,
 };
 
 export default Loader;
