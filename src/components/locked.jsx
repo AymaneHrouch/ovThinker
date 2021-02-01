@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import { Row, Container, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { getLockedJournals, saveJournal } from "./../services/journalService";
 import format from "./utils/formatDate";
 import MyPagination from "./common/myPagination";
-import { Link } from "react-router-dom";
+import Loader from "./common/loader";
 
 class Locked extends Component {
   state = {
     journals: [],
     currentPage: 1,
     pageSize: 20,
-    loading: true
+    loading: true,
   };
 
   async componentDidMount() {
@@ -23,9 +24,10 @@ class Locked extends Component {
   }
 
   getRequiredJournals = async () => {
+    this.setState({ loading: true });
     const { currentPage, pageSize } = this.state;
     const { data: journals } = await getLockedJournals(currentPage, pageSize);
-    return this.setState({ journals });
+    return this.setState({ journals, loading: false });
   };
 
   handleMouseEnter = ({ currentTarget: e }) => {
@@ -62,22 +64,20 @@ class Locked extends Component {
 
   handlePagination = page => {
     let { currentPage, journals } = this.state;
-    if (page === "next") {
+    if (page === "next")
       currentPage = journals.length !== 0 ? currentPage + 1 : currentPage;
-    } else {
-      currentPage = currentPage - 1;
-    }
+    else currentPage = currentPage - 1;
+
     if (currentPage < 1) return;
     this.setState({ currentPage });
 
     // Init the journals array because the twik in handleSave make the unlocked item stick
     const journalsInit = [];
     this.setState({ journals: journalsInit });
-    console.log(this.state.currentPage);
   };
 
   render() {
-    const { journals, currentPage } = this.state;
+    const { journals, currentPage, loading } = this.state;
     return (
       <React.Fragment>
         <Container>
@@ -87,6 +87,7 @@ class Locked extends Component {
             currentPage={currentPage}
             onChange={this.handlePagination}
           />
+          {loading && <Loader fontSize="4rem" />}
           {journals.length !== 0 && (
             <Row className="p-2 border-bottom">
               <Col xs={5}>
@@ -139,9 +140,9 @@ class Locked extends Component {
               </Row>
             ))
           ) : (
-            <span className="text-align-center">
+            <div className="p-3">
               “A moment lasts all of a second, but the memory lives on forever.”
-            </span>
+            </div>
           )}
         </Container>
       </React.Fragment>
