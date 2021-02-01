@@ -10,7 +10,7 @@ class Locked extends Component {
     journals: [],
     currentPage: 1,
     pageSize: 20,
-    bool: false,
+    loading: true
   };
 
   async componentDidMount() {
@@ -43,7 +43,6 @@ class Locked extends Component {
   handleClick = e => {
     e.currentTarget.className = "btn btn-success btn-sm";
     e.currentTarget.children[0].className = "fa fa-unlock";
-    this.setState({ bool: true });
   };
 
   handleSave = async journal => {
