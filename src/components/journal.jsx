@@ -7,17 +7,20 @@ import {
 import { toast } from "react-toastify";
 import Box from "./box";
 
+import Loader from "./common/loader";
+
 class Journal extends Component {
   state = {
     unlockDate: null,
     journal: {},
     showModal: false,
+    loading: true,
   };
 
   async componentDidMount() {
     try {
       let { data: journal } = await getJournal(this.props.match.params.id);
-      this.setState({ journal });
+      this.setState({ journal, loading: false });
     } catch (ex) {
       this.setState({ journal: false });
     }
@@ -71,7 +74,8 @@ class Journal extends Component {
   };
 
   render() {
-    const { journal } = this.state;
+    const { journal, loading } = this.state;
+    if (loading) return <Loader fontSize="5rem" />;
     if (journal)
       return (
         <React.Fragment>

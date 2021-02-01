@@ -13,6 +13,7 @@ import MyPagination from "./common/myPagination";
 import { toast } from "react-toastify";
 import Box from "./box";
 import styled from "styled-components";
+import Loader from "./common/loader";
 
 const StyledPagination = styled.div`
   display: none;
@@ -37,7 +38,9 @@ class Journals extends Component {
     pickedDate: new Date(),
     unlockDate: null,
     journalShouldLockedId: "",
+    loading: true,
   };
+
 
   componentDidMount() {
     this.getRequiredJournals();
@@ -54,6 +57,7 @@ class Journals extends Component {
   }
 
   getRequiredJournals = async () => {
+    this.setState({ loading: true });
     const { currentPage, pageSize, pickedDate, pickedFilter } = this.state;
     let start;
     let end;
@@ -62,7 +66,7 @@ class Journals extends Component {
         currentPage,
         pageSize
       );
-      return this.setState({ journals });
+      return this.setState({ journals, loading: false });
     }
 
     if (pickedFilter === "day") {
@@ -87,7 +91,7 @@ class Journals extends Component {
       start.getTime(),
       end.getTime()
     );
-    this.setState({ journals });
+    this.setState({ journals, loading: false });
   };
 
   handleFilter = ({ currentTarget }) => {
@@ -101,15 +105,11 @@ class Journals extends Component {
   handlePick = value => {
     const { pickedDate } = this.state;
     let newDate = pickedDate;
-    if (value === "prev-day") {
-      newDate.setDate(newDate.getDate() - 1);
-    } else if (value === "next-day") {
-      newDate.setDate(newDate.getDate() + 1);
-    } else if (value === "prev-month") {
-      newDate.setMonth(newDate.getMonth() - 1);
-    } else if (value === "next-month") {
-      newDate.setMonth(newDate.getMonth() + 1);
-    } else newDate = value;
+    if (value === "prev-day") newDate.setDate(newDate.getDate() - 1);
+    else if (value === "next-day") newDate.setDate(newDate.getDate() + 1);
+    else if (value === "prev-month") newDate.setMonth(newDate.getMonth() - 1);
+    else if (value === "next-month") newDate.setMonth(newDate.getMonth() + 1);
+    else newDate = value;
 
     this.setState({ pickedDate: new Date(newDate), currentPage: 1 });
   };
@@ -185,7 +185,13 @@ class Journals extends Component {
     this.setState({ showModal: false, journalShouldLockedId: "" });
 
   render() {
-    const { journals, currentPage, pickedFilter, pickedDate } = this.state;
+    const {
+      journals,
+      currentPage,
+      pickedFilter,
+      pickedDate,
+      loading,
+    } = this.state;
     return (
       <React.Fragment>
         <Container className="mt-2">
@@ -212,6 +218,7 @@ class Journals extends Component {
               </div>
             </Col>
             <StyledCol sm={8}>
+              {loading && <Loader fontSize="2rem" />}
               {journals.length !== 0 ? (
                 journals.map(journal => {
                   return (
