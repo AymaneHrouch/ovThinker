@@ -15,13 +15,13 @@ const OptionsDropdown = props => {
           <i className="col-1 fa fa-pencil" aria-hidden="true"></i>
           <span className="col-1">Edit</span>
         </Dropdown.Item>
-        <Dropdown.Item onClick={onDelete}>
-          <i className="col-1 fa fa-trash" aria-hidden="true"></i>
-          <span className="col-1">Delete</span>
-        </Dropdown.Item>
         <Dropdown.Item onClick={onToggleModal}>
           <i className="col-1 fa fa-lock" aria-hidden="true"></i>
           <span className="col-1">Lock</span>
+        </Dropdown.Item>
+        <Dropdown.Item onClick={onDelete}>
+          <i className="col-1 fa fa-trash" aria-hidden="true"></i>
+          <span className="col-1">Delete</span>
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
