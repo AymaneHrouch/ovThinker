@@ -7,6 +7,7 @@ class StandardForm extends Component {
   state = {
     data: {},
     errors: {},
+    loading: false,
   };
 
   validate = () => {
@@ -32,34 +33,37 @@ class StandardForm extends Component {
     e.preventDefault();
 
     const errors = this.validate();
-    this.setState({ errors: errors || {} });
-    if (errors) return;
+    this.setState({ errors: errors || {}, loading: true });
+
+    if (errors) {
+      this.setState({ loading: false });
+      return;
+    }
 
     this.doSubmit();
   };
-  
+
   handleChange = ({ currentTarget: input }) => {
     const errors = { ...this.state.errors };
     const errorMessage = this.validateProprety(input);
     if (errorMessage) errors[input.name] = errorMessage;
     else delete errors[input.name];
-    
+
     const data = { ...this.state.data };
     data[input.name] = input.value;
-    
+
     this.setState({ data, errors });
   };
-  
+
   confirmPassword = () => {
     const { password, confirmPassword } = this.state.data;
 
     if (password !== confirmPassword) {
       const errors = {};
       errors["confirmPassword"] = "Passwords don't match";
-      this.setState({ errors });
+      this.setState({ errors, loading: false });
       return false;
-    }
-    else return true;
+    } else return true;
   };
 
   renderInput = (name, label, type = "text") => {
@@ -84,7 +88,6 @@ class StandardForm extends Component {
       </Button>
     );
   };
-
 }
 
 export default StandardForm;

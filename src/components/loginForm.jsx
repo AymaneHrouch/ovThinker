@@ -3,6 +3,7 @@ import { Container, Form } from "react-bootstrap";
 import Joi from "joi-browser";
 import auth from "./../services/authService";
 import StandardForm from "./common/standardForm";
+import Loader from "./common/loader";
 
 class LoginForm extends StandardForm {
   state = {
@@ -11,6 +12,7 @@ class LoginForm extends StandardForm {
       password: "",
     },
     errors: {},
+    loading: false,
   };
 
   schema = {
@@ -26,13 +28,15 @@ class LoginForm extends StandardForm {
     } catch (ex) {
       const errors = { ...this.state.errors };
       errors.email = ex.response.data;
-      this.setState({ errors });
+      this.setState({ errors, loading: false });
     }
   };
 
   render() {
+    const { loading } = this.state;
     return (
       <Container>
+        {loading && <Loader fontSize="3rem" />}
         <Form
           className="col-md-3 mt-4 ml-auto mr-auto"
           onSubmit={this.handleSubmit}
