@@ -1,11 +1,17 @@
 import React from "react";
 import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { NavLink, Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLogo = styled.img`
+  filter: ${({ theme }) => theme.logo};
+`;
 
 const NavigationBar = ({ user, theme, themeToggler }) => {
   return (
     <Navbar bg={theme} variant={theme} expand="lg">
       <Navbar.Brand as={Link} to="/">
+        <StyledLogo width="30px" src="./logo.png"></StyledLogo>
         overThinker
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
