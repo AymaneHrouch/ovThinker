@@ -9,7 +9,7 @@ const Loader = props => {
   };
   return (
     <div style={divStyle}>
-      <i className="fa fa-spinner fa-spin" />
+      <i className="fa fa-spinner fa-pulse" />
     </div>
   );
 };
