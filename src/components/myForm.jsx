@@ -21,6 +21,7 @@ class MyForm extends Component {
       starred: false,
       locked: false,
     },
+    rows: 10,
   };
 
   componentDidMount() {
@@ -64,9 +65,19 @@ class MyForm extends Component {
     this.props.history.push(`/journals/${newJournal._id}`);
   };
 
+  handleRowsChange = () => {
+    const rows = this.state.rows === 10 ? 30 : 10;
+    this.setState({ rows });
+  };
+
   render() {
     const { onToggleEdit } = this.props;
-    const { journal } = this.state;
+    const { journal, rows } = this.state;
+    const rowChangerStyle = {
+      cursor: "pointer",
+      borderBottom: "solid 2px #007bff",
+      padding: "5px"
+    };
 
     return (
       <div className="container">
@@ -78,8 +89,17 @@ class MyForm extends Component {
             onChange={this.handleChange}
             className="form-control mb-3"
             id="form"
-            rows="10"
+            rows={rows}
           ></TextArea>
+          <div
+            onClick={this.handleRowsChange}
+            style={rowChangerStyle}
+          >
+            <i
+              className={`fa fa-arrow-${rows === 10 ? "down" : "up"} p-1`}
+              aria-hidden="true"
+            ></i>
+          </div>
           <div className="w-100 mb-2">
             <DateTimePicker
               minDate={new Date("1900")}
