@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { toast } from "react-toastify";
-import { saveJournal } from "../services/journalService";
 import PropTypes from "prop-types";
 import styled from "styled-components";
+import Loader from "./common/loader";
+import { saveJournal } from "../services/journalService";
 
 const TextArea = styled.textarea`
   background-color: ${({ theme }) => theme.card} !important;
@@ -22,6 +23,7 @@ class MyForm extends Component {
       locked: false,
     },
     rows: 10,
+    loading: false,
   };
 
   componentDidMount() {
@@ -44,9 +46,8 @@ class MyForm extends Component {
 
   handleSave = async () => {
     const { journal } = this.state;
-    const { comment, date } = journal;
+    const { date } = journal;
 
-    if (comment === "") return toast.error("Field can't be empty");
     if (!date) return toast.error("Invalide date.");
 
     if (journal._id) console.log("goooothem, you modified");
@@ -61,7 +62,9 @@ class MyForm extends Component {
       });
     }
 
+    this.setState({ loading: true });
     const { data: newJournal } = await saveJournal(this.state.journal);
+    this.setState({ loading: false });
     this.props.history.push(`/journals/${newJournal._id}`);
   };
 
@@ -72,18 +75,19 @@ class MyForm extends Component {
 
   render() {
     const { onToggleEdit } = this.props;
-    const { journal, rows } = this.state;
+    const { journal, rows, loading } = this.state;
     const rowChangerStyle = {
       cursor: "pointer",
       borderBottom: "solid 2px #007bff",
       padding: "5px",
-      marginBottom: "10px"
+      marginBottom: "10px",
     };
 
     return (
       <div className="container">
         <div className="form-group d-flex flex-column align-items-center m-2">
           <label htmlFor="form">How was your day?</label>
+          {loading && <Loader fontSize="2rem" />}
           <TextArea
             autoFocus
             value={journal["comment"]}
@@ -92,10 +96,7 @@ class MyForm extends Component {
             id="form"
             rows={rows}
           ></TextArea>
-          <div
-            onClick={this.handleRowsChange}
-            style={rowChangerStyle}
-          >
+          <div onClick={this.handleRowsChange} style={rowChangerStyle}>
             <i
               className={`fa fa-arrow-${rows === 10 ? "down" : "up"} p-1`}
               aria-hidden="true"
@@ -111,7 +112,11 @@ class MyForm extends Component {
             />
           </div>
           <div className="w-100">
-            <button className="btn btn-primary m-2" onClick={this.handleSave}>
+            <button
+              className="btn btn-primary m-2"
+              onClick={this.handleSave}
+              disabled={journal.comment === "" || loading}
+            >
               Save
             </button>
             <button
