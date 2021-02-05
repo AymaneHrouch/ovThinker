@@ -76,7 +76,8 @@ class MyForm extends Component {
     const rowChangerStyle = {
       cursor: "pointer",
       borderBottom: "solid 2px #007bff",
-      padding: "5px"
+      padding: "5px",
+      marginBottom: "10px"
     };
 
     return (
@@ -87,7 +88,7 @@ class MyForm extends Component {
             autoFocus
             value={journal["comment"]}
             onChange={this.handleChange}
-            className="form-control mb-3"
+            className="form-control"
             id="form"
             rows={rows}
           ></TextArea>
