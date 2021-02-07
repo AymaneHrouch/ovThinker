@@ -12,6 +12,7 @@ const TextArea = styled.textarea`
   letter-spacing: 1px;
   font-size: 1.1rem;
   width: 100%;
+  resize: none;
 `;
 
 class MyForm extends Component {
