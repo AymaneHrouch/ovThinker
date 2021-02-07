@@ -111,6 +111,13 @@ class MyForm extends Component {
               onChange={this.handleDateChange}
               value={new Date(journal["date"])}
             />
+            <span
+              onClick={() => this.handleDateChange(new Date())}
+              style={{ cursor: "pointer" }}
+              className="p-1"
+            >
+              Now
+            </span>
           </div>
           <div className="w-100">
             <button
