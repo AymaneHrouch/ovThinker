@@ -39,6 +39,14 @@ class MyForm extends Component {
     this.setState({ journal });
   };
 
+  wordCount(str) {
+    return str.split(" ").filter(n => n != "").length;
+  }
+
+  letterCount(str) {
+    return str.split("").filter(n => n != " ").length;
+  }
+
   handleDateChange = value => {
     const journal = { ...this.state.journal };
     journal["date"] = value;
@@ -63,13 +71,12 @@ class MyForm extends Component {
       });
     }
 
-    
     this.setState({ loading: true });
     const { data: newJournal } = await saveJournal(this.state.journal);
     this.setState({ loading: false });
     this.props.history.push(`/journals/${newJournal._id}`);
   };
-  
+
   handleRowsChange = () => {
     const rows = this.state.rows === 10 ? 30 : 10;
     this.setState({ rows });
@@ -88,9 +95,13 @@ class MyForm extends Component {
     return (
       <div className="container">
         <div className="form-group d-flex flex-column align-items-center m-2">
-          <label htmlFor="form">How was your day?</label>
           {loading && <Loader fontSize="2rem" />}
+          <span style={{ fontSize: "0.8rem", alignSelf: "flex-end" }}>
+            {this.wordCount(journal.comment)} word,{" "}
+            {this.letterCount(journal.comment)} letter
+          </span>
           <TextArea
+            placeholder="How was your day? ..."
             disabled={loading === true}
             autoFocus
             value={journal["comment"]}
