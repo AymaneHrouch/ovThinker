@@ -63,12 +63,13 @@ class MyForm extends Component {
       });
     }
 
+    
     this.setState({ loading: true });
     const { data: newJournal } = await saveJournal(this.state.journal);
     this.setState({ loading: false });
     this.props.history.push(`/journals/${newJournal._id}`);
   };
-
+  
   handleRowsChange = () => {
     const rows = this.state.rows === 10 ? 30 : 10;
     this.setState({ rows });
@@ -90,6 +91,7 @@ class MyForm extends Component {
           <label htmlFor="form">How was your day?</label>
           {loading && <Loader fontSize="2rem" />}
           <TextArea
+            disabled={loading === true}
             autoFocus
             value={journal["comment"]}
             onChange={this.handleChange}
@@ -105,9 +107,8 @@ class MyForm extends Component {
           </div>
           <div className="w-100 mb-2">
             <DateTimePicker
-              minDate={new Date("1900")}
-              maxDate={new Date("2100")}
-              required={true}
+              maxDate={new Date("3000")}
+              disabled={loading === true}
               onChange={this.handleDateChange}
               value={new Date(journal["date"])}
             />
