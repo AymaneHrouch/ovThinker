@@ -39,13 +39,7 @@ class MyForm extends Component {
     this.setState({ journal });
   };
 
-  wordCount(str) {
-    return str.split(" ").filter(n => n != "").length;
-  }
-
-  letterCount(str) {
-    return str.split("").filter(n => n != " ").length;
-  }
+  wordCount = str => str.split(" ").filter(n => n != "").length;
 
   handleDateChange = value => {
     const journal = { ...this.state.journal };
@@ -97,8 +91,7 @@ class MyForm extends Component {
         <div className="form-group d-flex flex-column align-items-center m-2">
           {loading && <Loader fontSize="2rem" />}
           <span style={{ fontSize: "0.8rem", alignSelf: "flex-end" }}>
-            {this.wordCount(journal.comment)} word,{" "}
-            {this.letterCount(journal.comment)} letter
+            {this.wordCount(journal.comment)} word{" "}
           </span>
           <TextArea
             placeholder="How was your day? ..."
