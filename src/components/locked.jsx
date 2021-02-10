@@ -5,12 +5,14 @@ import { getLockedJournals, saveJournal } from "./../services/journalService";
 import format from "./utils/formatDate";
 import MyPagination from "./common/myPagination";
 import Loader from "./common/loader";
+import Sort from "./common/sort";
 
 class Locked extends Component {
   state = {
     journals: [],
     currentPage: 1,
     pageSize: 20,
+    sort: "desc",
     loading: true,
   };
 
@@ -19,14 +21,19 @@ class Locked extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { currentPage } = this.state;
-    if (currentPage !== prevState.currentPage) this.getRequiredJournals();
+    const { currentPage, sort } = this.state;
+    if (currentPage !== prevState.currentPage || sort !== prevState.sort)
+      this.getRequiredJournals();
   }
 
   getRequiredJournals = async () => {
     this.setState({ loading: true });
-    const { currentPage, pageSize } = this.state;
-    const { data: journals } = await getLockedJournals(currentPage, pageSize);
+    const { currentPage, pageSize, sort } = this.state;
+    const { data: journals } = await getLockedJournals(
+      currentPage,
+      pageSize,
+      sort
+    );
     return this.setState({ journals, loading: false });
   };
 
@@ -76,8 +83,12 @@ class Locked extends Component {
     this.setState({ journals: journalsInit });
   };
 
+  handleSorting = () => {
+    this.setState({ sort: this.state.sort === "asc" ? "desc" : "asc" });
+  };
+
   render() {
-    const { journals, currentPage, loading } = this.state;
+    const { journals, currentPage, loading, sort } = this.state;
     return (
       <React.Fragment>
         <Container>
@@ -88,6 +99,9 @@ class Locked extends Component {
             onChange={this.handlePagination}
           />
           {loading && <Loader fontSize="4rem" />}
+          {journals.length !== 0 && (
+            <Sort sort={sort} onSort={this.handleSorting} />
+          )}
           {journals.length !== 0 && (
             <Row className="p-2 border-bottom">
               <Col xs={5}>

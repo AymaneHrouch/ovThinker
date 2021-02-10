@@ -18,15 +18,15 @@ export function getJournals(
   );
 }
 
-export function getStarredJournals(pageNumber, pageSize) {
+export function getStarredJournals(pageNumber, pageSize, sort = "desc") {
   return http.get(
-    `${apiEndpoint}/starred?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    `${apiEndpoint}/starred?pageNumber=${pageNumber}&pageSize=${pageSize}&sort=${sort}`
   );
 }
 
-export function getLockedJournals(pageNumber, pageSize) {
+export function getLockedJournals(pageNumber, pageSize, sort = "desc") {
   return http.get(
-    `${apiEndpoint}/locked?pageNumber=${pageNumber}&pageSize=${pageSize}`
+    `${apiEndpoint}/locked?pageNumber=${pageNumber}&pageSize=${pageSize}&sort=${sort}`
   );
 }
 

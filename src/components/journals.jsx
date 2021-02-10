@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import Box from "./box";
 import styled from "styled-components";
 import Loader from "./common/loader";
+import Sort from "./common/sort";
 
 const StyledPagination = styled.div`
   display: none;
@@ -81,7 +82,8 @@ class Journals extends Component {
     if (pickedFilter === "starred") {
       const { data: journals } = await getStarredJournals(
         currentPage,
-        pageSize
+        pageSize,
+        sort
       );
       return this.setState({ journals, loading: false });
     }
@@ -157,7 +159,7 @@ class Journals extends Component {
     this.setState({ unlockDate });
   };
 
-  handlSorting = () => {
+  handleSorting = () => {
     this.setState({ sort: this.state.sort === "asc" ? "desc" : "asc" });
   };
 
@@ -213,7 +215,7 @@ class Journals extends Component {
       pickedFilter,
       pickedDate,
       loading,
-      sort
+      sort,
     } = this.state;
     return (
       <React.Fragment>
@@ -241,12 +243,9 @@ class Journals extends Component {
               </div>
             </Col>
             <StyledCol sm={8}>
-              {
-                <StyledSorting onClick={this.handlSorting}>
-                  <span>Date</span>
-                  <i className={`fa fa-sort-${sort}`} aria-hidden="true"></i>
-                </StyledSorting>
-              }
+              {journals.length !== 0 && (
+                <Sort sort={sort} onSort={this.handleSorting} />
+              )}
               {loading && <Loader fontSize="2rem" />}
               {journals.length !== 0 ? (
                 journals.map(journal => {
