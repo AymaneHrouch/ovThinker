@@ -9,7 +9,7 @@ const StyledLogo = styled.img`
 
 const NavigationBar = ({ user, theme, themeToggler }) => {
   return (
-    <Navbar bg={theme} variant={theme} expand="lg">
+    <Navbar bg={theme} variant={theme} expand="lg" className="mb-3">
       <Navbar.Brand as={Link} to="/">
         <StyledLogo width="30px" src="./logo.png"></StyledLogo>
         overThinker
