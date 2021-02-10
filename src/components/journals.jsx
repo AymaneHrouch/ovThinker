@@ -29,6 +29,16 @@ const StyledCol = styled(Col)`
   }
 `;
 
+const StyledSorting = styled.div`
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  text-aling: center;
+  & span {
+    margin-right: 0.5rem;
+  }
+`;
+
 class Journals extends Component {
   state = {
     journals: [],
@@ -36,29 +46,36 @@ class Journals extends Component {
     pageSize: 3,
     pickedFilter: "day",
     pickedDate: new Date(),
+    sort: "desc",
     unlockDate: null,
     journalShouldLockedId: "",
     loading: true,
   };
-
 
   componentDidMount() {
     this.getRequiredJournals();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { pickedFilter, currentPage, pickedDate } = this.state;
+    const { pickedFilter, currentPage, pickedDate, sort } = this.state;
     if (
       pickedFilter !== prevState.pickedFilter ||
       currentPage !== prevState.currentPage ||
-      pickedDate !== prevState.pickedDate
+      pickedDate !== prevState.pickedDate ||
+      sort !== prevState.sort
     )
       this.getRequiredJournals();
   }
 
   getRequiredJournals = async () => {
     this.setState({ loading: true });
-    const { currentPage, pageSize, pickedDate, pickedFilter } = this.state;
+    const {
+      currentPage,
+      pageSize,
+      pickedDate,
+      pickedFilter,
+      sort,
+    } = this.state;
     let start;
     let end;
     if (pickedFilter === "starred") {
@@ -89,7 +106,8 @@ class Journals extends Component {
       currentPage,
       pageSize,
       start.getTime(),
-      end.getTime()
+      end.getTime(),
+      sort
     );
     this.setState({ journals, loading: false });
   };
@@ -137,6 +155,10 @@ class Journals extends Component {
 
   handleDateChange = unlockDate => {
     this.setState({ unlockDate });
+  };
+
+  handlSorting = () => {
+    this.setState({ sort: this.state.sort === "asc" ? "desc" : "asc" });
   };
 
   handleLock = async () => {
@@ -191,6 +213,7 @@ class Journals extends Component {
       pickedFilter,
       pickedDate,
       loading,
+      sort
     } = this.state;
     return (
       <React.Fragment>
@@ -218,6 +241,12 @@ class Journals extends Component {
               </div>
             </Col>
             <StyledCol sm={8}>
+              {
+                <StyledSorting onClick={this.handlSorting}>
+                  <span>Date</span>
+                  <i className={`fa fa-sort-${sort}`} aria-hidden="true"></i>
+                </StyledSorting>
+              }
               {loading && <Loader fontSize="2rem" />}
               {journals.length !== 0 ? (
                 journals.map(journal => {

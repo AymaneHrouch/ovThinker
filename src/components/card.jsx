@@ -28,7 +28,7 @@ class Card extends Component {
   render() {
     const { journal, onStar, ...rest } = this.props;
     return (
-      <StyledCard className="container my-3 p-3">
+      <StyledCard className="container mb-3 p-3">
         <p>
           <LockModal {...rest} />
           <Badge className="float-right">

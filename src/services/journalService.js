@@ -6,9 +6,15 @@ function journalUrl(journalId) {
   return `${apiEndpoint}/${journalId}`;
 }
 
-export function getJournals(pageNumber, pageSize, start = 0, end = 0) {
+export function getJournals(
+  pageNumber,
+  pageSize,
+  start = 0,
+  end = 0,
+  sort = "desc"
+) {
   return http.get(
-    `${apiEndpoint}?pageNumber=${pageNumber}&pageSize=${pageSize}&start=${start}&end=${end}`
+    `${apiEndpoint}?pageNumber=${pageNumber}&pageSize=${pageSize}&start=${start}&end=${end}&sort=${sort}`
   );
 }
 

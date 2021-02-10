@@ -39,7 +39,7 @@ class MyForm extends Component {
     this.setState({ journal });
   };
 
-  wordCount = str => str.replace(/\n/g ," ").split(" ").filter(n => n != "").length;
+  wordCount = str => str.replace(/\n/g ," ").split(" ").filter(n => n !== "").length;
 
   handleDateChange = value => {
     const journal = { ...this.state.journal };
