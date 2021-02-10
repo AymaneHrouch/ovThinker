@@ -27,9 +27,13 @@ class Card extends Component {
 
   render() {
     const { journal, onStar, ...rest } = this.props;
+    // detecting if text is in Arabic
+    const pStyle = {
+      textAlign: /[\u0600-\u06FF]/.test(journal.comment) ? "right" : "left",
+    };
     return (
       <StyledCard className="container mb-3 p-3">
-        <p>
+        <p style={pStyle}>
           <LockModal {...rest} />
           <Badge className="float-right">
             <i
