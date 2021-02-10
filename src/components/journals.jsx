@@ -30,16 +30,6 @@ const StyledCol = styled(Col)`
   }
 `;
 
-const StyledSorting = styled.div`
-  justify-content: center;
-  cursor: pointer;
-  padding: 0.5rem;
-  text-aling: center;
-  & span {
-    margin-right: 0.5rem;
-  }
-`;
-
 class Journals extends Component {
   state = {
     journals: [],
