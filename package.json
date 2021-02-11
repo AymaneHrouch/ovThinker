@@ -15,6 +15,7 @@
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-anchorme": "^2.1.1",
     "react-bootstrap": "^1.4.0",
     "react-date-picker": "^8.0.5",
     "react-datetime-picker": "^3.0.4",
