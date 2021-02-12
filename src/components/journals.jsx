@@ -132,6 +132,7 @@ class Journals extends Component {
       currentPage = currentPage - 1;
     }
     if (currentPage < 1) return;
+    window.scrollTo(0, 0);
     this.setState({ currentPage });
   };
 
