@@ -23,7 +23,7 @@ const NavigationBar = ({ user, theme, themeToggler }) => {
                 Journals
               </Nav.Link>
               <Nav.Link as={NavLink} exact to="/random">
-                random
+                Random
               </Nav.Link>
               <Nav.Link as={NavLink} exact to="/locked">
                 Locked
