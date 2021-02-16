@@ -7,6 +7,7 @@ import formatDate from "./utils/formatDate";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { Anchorme } from "react-anchorme";
+import SmartText from "./common/smartText";
 
 const StyledCard = styled.div`
   white-space: pre-line;
@@ -47,7 +48,13 @@ class Card extends Component {
               aria-hidden="true"
             ></i>
           </Badge>
-          <Anchorme target="_blank">{journal.comment}</Anchorme>
+          <Anchorme target="_blank">
+            <SmartText
+              text={journal.comment}
+              length="200"
+              url={this.props.url}
+            ></SmartText>
+          </Anchorme>
         </p>
 
         <div>
