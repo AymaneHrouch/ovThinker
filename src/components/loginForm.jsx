@@ -54,13 +54,13 @@ class LoginForm extends StandardForm {
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
           <p style={{ marginTop: "2rem" }}>
-            just wanna test the app?
+            Just testing the app?
             <br />
-            then you don't have to create a new account.{" "}
+            You don't have to create a new account then:{" "}
             <b onClick={this.inputSampleAccount} style={{ cursor: "pointer" }}>
               Click Here
             </b>{" "}
-            to input credentials of a sample account then press Login.
+            to inject credentials of a sample account then press Login.
           </p>
         </Form>
       </Container>
