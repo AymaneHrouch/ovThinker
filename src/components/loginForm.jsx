@@ -4,6 +4,7 @@ import Joi from "joi-browser";
 import auth from "./../services/authService";
 import StandardForm from "./common/standardForm";
 import Loader from "./common/loader";
+import { Button } from "react-bootstrap";
 
 class LoginForm extends StandardForm {
   state = {
@@ -32,15 +33,13 @@ class LoginForm extends StandardForm {
     }
   };
 
-  inputSampleAccount = () => {
-    this.setState({
-      data: {
-        email: "aymane@hrouch.me",
-        password: "aymanehrouch",
-      },
-      errors: {},
-    });
+  loginSampleAccount = async () => {
+    this.setState({ loading: true });
+    await auth.login("aymane@hrouch.me", "aymanehrouch");
+    window.location = "/";
+    this.setState({ loading: false });
   };
+
   render() {
     const { loading } = this.state;
     return (
@@ -54,13 +53,12 @@ class LoginForm extends StandardForm {
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
           <p style={{ marginTop: "2rem" }}>
-            just wanna test the app?
+            Just wanna test the app?
             <br />
-            then you don't have to create a new account.{" "}
-            <b onClick={this.inputSampleAccount} style={{ cursor: "pointer" }}>
-              Click Here
-            </b>{" "}
-            to input credentials of a sample account then press Login.
+            You don't have to create a new account.
+            <Button onClick={this.loginSampleAccount} variant="primary">
+              Login To Sample Account
+            </Button>
           </p>
         </Form>
       </Container>
