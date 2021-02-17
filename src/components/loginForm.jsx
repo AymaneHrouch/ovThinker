@@ -32,6 +32,15 @@ class LoginForm extends StandardForm {
     }
   };
 
+  inputSampleAccount = () => {
+    this.setState({
+      data: {
+        email: "aymane@hrouch.me",
+        password: "aymanehrouch",
+      },
+      errors: {},
+    });
+  };
   render() {
     const { loading } = this.state;
     return (
@@ -44,6 +53,15 @@ class LoginForm extends StandardForm {
           {this.renderInput("email", "Email", "email")}
           {this.renderInput("password", "Password", "password")}
           {this.renderButton("Login")}
+          <p style={{ marginTop: "2rem" }}>
+            just wanna test the app?
+            <br />
+            then you don't have to create a new account.{" "}
+            <b onClick={this.inputSampleAccount} style={{ cursor: "pointer" }}>
+              Click Here
+            </b>{" "}
+            to input credentials of a sample account then press Login.
+          </p>
         </Form>
       </Container>
     );
