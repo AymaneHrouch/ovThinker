@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Anchorme } from 'react-anchorme';
 
 const StyledB = styled.b`
   cursor: pointer;
@@ -12,17 +13,17 @@ const SmartText = ({ text, length = 200, url }) => {
   const [showLess, setShowLess] = React.useState(true);
 
   if (text.length < length || url !== "/journals") {
-    return <React.Fragment>{text}</React.Fragment>;
+    return <Anchorme target="_blank">{text}</Anchorme>;
   }
 
   return (
-    <React.Fragment>
+    <Anchorme target="_blank">
       {showLess ? `${text.slice(0, length)}…` : text}
       &nbsp;
       <StyledB onClick={() => setShowLess(!showLess)}>
         See {showLess ? "More" : "Less"}
       </StyledB>
-    </React.Fragment>
+    </Anchorme>
   );
 };
 
