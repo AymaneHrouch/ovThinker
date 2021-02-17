@@ -35,7 +35,7 @@ class LoginForm extends StandardForm {
   inputSampleAccount = () => {
     this.setState({
       data: {
-        email: "aymane@hrouch.me",
+        email: "aymane.hrouch2000@gmail.com",
         password: "aymanehrouch",
       },
       errors: {},
