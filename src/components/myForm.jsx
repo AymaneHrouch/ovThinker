@@ -120,6 +120,7 @@ class MyForm extends Component {
               disabled={loading === true}
               onChange={this.handleDateChange}
               value={new Date(journal["date"])}
+              clearIcon={null}
             />
             <span
               onClick={() => this.handleDateChange(new Date())}
