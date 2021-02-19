@@ -5,14 +5,15 @@ import styled from "styled-components";
 
 const StyledLogo = styled.img`
   filter: ${({ theme }) => theme.logo};
+  margin-bottom: 6px;
 `;
 
 const NavigationBar = ({ user, theme, themeToggler }) => {
   return (
     <Navbar bg={theme} variant={theme} expand="lg" className="mb-3">
       <Navbar.Brand as={Link} to="/">
-        <StyledLogo width="30px" src="./logo.png"></StyledLogo>
-        overThinker
+        <StyledLogo width="20px" src="./logo.png"></StyledLogo>
+        verThinker
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
