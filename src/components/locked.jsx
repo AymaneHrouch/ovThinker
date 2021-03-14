@@ -130,8 +130,12 @@ class Locked extends Component {
                 </Col>
                 <Col xs={5}>
                   {new Date() > new Date(journal.unlockDate) ? (
-                    <span className="font-weight-bold text-success">
+                    <span
+                      title={`since ${format(new Date(journal.unlockDate))}`}
+                      className="font-weight-bold text-success"
+                    >
                       [Unlockable]
+                      <small></small>
                     </span>
                   ) : (
                     `Locked until ${format(new Date(journal.unlockDate))}`
