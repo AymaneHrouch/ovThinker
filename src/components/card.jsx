@@ -30,11 +30,7 @@ class Card extends Component {
     const { journal, onStar, ...rest } = this.props;
     // detecting if text is in Arabic
     const pStyle = {
-      textAlign:
-        /[a-zA-Z]/.test(journal.comment) ||
-        !/[\u0600-\u06FF]/.test(journal.comment)
-          ? "left"
-          : "right",
+      textAlign: /[\u0600-\u06FF]/.test(journal.comment) ? "right" : "left",
     };
     return (
       <StyledCard className="container mb-3 p-3">
@@ -51,11 +47,11 @@ class Card extends Component {
               aria-hidden="true"
             ></i>
           </Badge>
-          <SmartText
-            text={journal.comment}
-            length="200"
-            url={this.props.url}
-          ></SmartText>
+            <SmartText
+              text={journal.comment}
+              length="200"
+              url={this.props.url}
+            ></SmartText>
         </p>
 
         <div>
